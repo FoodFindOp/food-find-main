@@ -28,19 +28,27 @@
             <p>User SpaghettiYeti and his buddies need food at 3 am. They can never decide where to eat diplomatically, so they found a simple app that will help them decide quickly.</p>
         <h2>Interaction Flow</h2>
             <h3>Precondition</h3>
-                <p>User SpaghettiYeti logs into his Restaurant Tinder account/ User SpaghettiYeti opens the Restaurant Tinder app.</p>
+                <p>User opens the Restaurant Tinder app.</p>
             <h3>Post-condition</h3>
                 <p>The winning restaurant has been chosen.</p>
             <ul>
-                <li>RT app asks Theo for a zip code.</li>
-                <li>Theo types in zip code and pushes big continue arrow button.</li>
-                <li>RT finds 9 restaurants in the area that are open and deliver at this time. RT shows different types of food to choose from e.g. chinese, pizza, any, etc.</li>
-                <li>Theo selects any.</li>
-                <li>RT shows Theo the first choice with an option to swipe right or swipe left.</li>
-                <li>Theo quickly swipes through all the choices.</li>
-                <li>RT tells Theo "tallying votes" while the other members finish swiping.</li>
-                <li>Theo tells the guys to hurry up.</li>
-                <li>RT shows all members the winning restaurant.</li>
+                <li>RT opens to the home screen and provides 3 options of "create group", "join a group?", or "flying solo?"</li>
+                <li>Admin User taps "join a group".</li>
+                <li>RT brings up list of pre-made groups.</li>
+                <li>User selects group called "THE BOYYZ".</li>
+                <li>After everyone joins, RT asks admin user for area code.</li>
+                <li>Admin user types in area code and hits next button.</li>
+                <li>RT asks if Admin user wants delivery or dine-in.</li>
+                <li>Admin user taps delivery button</li>
+                <li>RT finds 9 restaurants in area that deliver and are open, and shows user the number and the first choice with an option of swipe right or left.</li>
+                <li>User swipes through all the choices</li>
+                <li>RT says "tallying votes..." while others are still voting.</li>
+                <li>once all users have voted, RT shows 5 restaurants remain and begins new round of voting.</li>
+                <li>User votes again</li>
+                <li>RT says "tallying votes..."</li>
+                <li>after votes are in, RT says there is a 3 way tie.</li>
+                <li>after a few moments, a randomizer initiates and shows the group the winner.</li>
+
             </ul>
 
 </body>
