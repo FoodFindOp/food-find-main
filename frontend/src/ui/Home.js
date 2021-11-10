@@ -1,5 +1,6 @@
 import React from "react"
 import { Container, Row, Col, Button } from 'react-bootstrap'
+import "./homeButtons.css"
 
 export const Home = () => {
   return (
@@ -14,7 +15,7 @@ export const Home = () => {
           </Col>
         </Row>
         <Row>
-          <Col className="py-5 d-flex justify-content-center">
+          <Col className="pb-5 d-flex justify-content-center">
             <p>What would you like to do?</p>
           </Col>
         </Row>
@@ -22,18 +23,18 @@ export const Home = () => {
 
       {/*Option Containers*/}
 
-      <Container>
+      <Container fluid>
         <Row>
-          <Col className="d-grid gap-2 col-md-3 mx-auto">
-            <Button size="lg">Create Group</Button>
+          <Col md={4} className="d-grid gap-2 mx-auto">
+            <Button className="target mx-5">Create Group</Button>
 
           </Col>
-          <Col className="d-grid gap-2 col-md-3 mx-auto">
-            <Button>Join Group</Button>
+          <Col md={4} className="d-grid gap-2 mx-auto">
+            <Button className="target mx-5">Join Group</Button>
 
           </Col>
-          <Col className="d-grid gap-2 col-md-3 mx-auto">
-            <Button>Flying Solo</Button>
+          <Col md={4} className="d-grid gap-2 mx-auto">
+            <Button className="target mx-5">Flying Solo</Button>
 
           </Col>
         </Row>
