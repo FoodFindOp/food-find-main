@@ -46,32 +46,42 @@ export const Home = () => {
           <Col md={4} className="d-grid gap-2 mx-auto">
             <Button className="target mx-5" onClick={handleShow}>Create Group</Button>
 
+            {/*Create group modal*/}
+
             <Modal show={show} onHide={handleClose}>
               <Modal.Header closeButton>
                 <Modal.Title>Create Group</Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <Form>
-                  <Form.Group className="mb-3" controlId="formBasicText">
-                    <Form.Label>Group Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter Group Name" /></Form.Group>
-                  <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="text" placeholder="Enter Password" /></Form.Group>
+
+                  <Form.Group className="mb-3" controlId="formGroupAddress">
+                    <Form.Label>Location</Form.Label>
+                    <Form.Control type="address" placeholder="Enter address" />
+                  </Form.Group>
+                  <Form.Group as={Col} controlId="formGridRadius">
+                    <Form.Label>Radius</Form.Label>
+                    <Form.Select defaultValue="Select radius">
+                      <option>5 miles</option>
+                      <option>10 miles</option>
+                      <option>15 miles</option>
+                      <option>20 miles</option>
+                    </Form.Select>
+                  </Form.Group>
 
 
                 </Form>
 
-
-
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="primary" onClick={handleClose}>
-                  Save Changes
+                  Start Game!
                 </Button>
               </Modal.Footer>
             </Modal>
           </Col>
+
+          {/*Join?*/}
 
           <Col md={4} className="d-grid gap-2 mx-auto">
             <Button className="target mx-5" onClick={handleShow2}>Join Group</Button>
@@ -88,6 +98,8 @@ export const Home = () => {
               </Modal.Footer>
             </Modal>
           </Col>
+
+          {/*Flying Solo*/}
 
           <Col md={4} className="d-grid gap-2 mx-auto">
             <Button className="target mx-5" onClick={handleShow3}>Flying Solo</Button>
