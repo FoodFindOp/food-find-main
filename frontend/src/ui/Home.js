@@ -1,7 +1,7 @@
 import React from "react"
 import { useState } from 'react'
 import { Container, Row, Col, Button, Modal, Form } from 'react-bootstrap'
-import "./homeButtons.css"
+import homeStyle from "./homeButtons.css"
 
 export const Home = () => {
   const [show, setShow] = useState(false);
@@ -22,14 +22,16 @@ export const Home = () => {
 
   return (
 
+
+
   <>
 
       {/*Website Name*/}
 
-      <Container>
+      <Container className={homeStyle.color}>
         <Row>
           <Col className="py-5 d-flex justify-content-center">
-            <h1>Restaurant Tinder</h1>
+            <h1>Fork It!</h1>
           </Col>
         </Row>
         <Row>
@@ -43,8 +45,8 @@ export const Home = () => {
 
       <Container fluid>
         <Row>
-          <Col md={4} className="d-grid gap-2 mx-auto">
-            <Button className="target mx-5" onClick={handleShow}>Create Group</Button>
+          <Col md={6} className="d-grid gap-2 mx-auto">
+            <Button className={homeStyle.target} onClick={handleShow}>Create Group</Button>
 
             {/*Create group modal*/}
 
@@ -54,7 +56,6 @@ export const Home = () => {
               </Modal.Header>
               <Modal.Body>
                 <Form>
-
                   <Form.Group className="mb-3" controlId="formGroupAddress">
                     <Form.Label>Location</Form.Label>
                     <Form.Control type="address" placeholder="Enter address" />
@@ -68,8 +69,6 @@ export const Home = () => {
                       <option>20 miles</option>
                     </Form.Select>
                   </Form.Group>
-
-
                 </Form>
 
               </Modal.Body>
@@ -81,43 +80,41 @@ export const Home = () => {
             </Modal>
           </Col>
 
-          {/*Join?*/}
-
-          <Col md={4} className="d-grid gap-2 mx-auto">
-            <Button className="target mx-5" onClick={handleShow2}>Join Group</Button>
-
-            <Modal show={show2} onHide={handleClose2}>
-              <Modal.Header closeButton>
-                <Modal.Title>Join Group</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-              <Modal.Footer>
-                <Button variant="primary" onClick={handleClose2}>
-                  Save Changes
-                </Button>
-              </Modal.Footer>
-            </Modal>
-          </Col>
-
           {/*Flying Solo*/}
 
-          <Col md={4} className="d-grid gap-2 mx-auto">
-            <Button className="target mx-5" onClick={handleShow3}>Flying Solo</Button>
+          <Col md={6} className="d-grid gap-2 mx-auto">
+            <Button className={homeStyle.target} onClick={handleShow3}>Flying Solo</Button>
 
             <Modal show={show3} onHide={handleClose3}>
               <Modal.Header closeButton>
                 <Modal.Title>Flying Solo</Modal.Title>
               </Modal.Header>
-              <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+              <Modal.Body>
+                <Form>
+                  <Form.Group className="mb-3" controlId="formGroupAddress">
+                    <Form.Label>Location</Form.Label>
+                    <Form.Control type="address" placeholder="Enter address" />
+                  </Form.Group>
+                  <Form.Group as={Col} controlId="formGridRadius">
+                    <Form.Label>Radius</Form.Label>
+                    <Form.Select defaultValue="Select radius">
+                      <option>5 miles</option>
+                      <option>10 miles</option>
+                      <option>15 miles</option>
+                      <option>20 miles</option>
+                    </Form.Select>
+                  </Form.Group>
+                </Form>
+              </Modal.Body>
               <Modal.Footer>
-                <Button variant="primary" onClick={handleClose3}>
-                  Save Changes
+                <Button variant="primary" onClick={handleClose}>
+                  Start Game!
                 </Button>
               </Modal.Footer>
             </Modal>
           </Col>
         </Row>
       </Container>
-    </>
+  </>
   )
 }

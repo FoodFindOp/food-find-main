@@ -1,4 +1,9 @@
 .target {
     height: 10em;
     margin-bottom: 2em;
+    margin-right: 3em;
+    margin-left: 3em;
+}
+.color{
+    color: lightcoral;
 }
