@@ -1,7 +1,7 @@
 import React from "react"
 import { useState } from 'react'
 import { Container, Row, Col, Button, Modal, Form } from 'react-bootstrap'
-import homeStyle from "./homeButtons.css"
+import './HomeStyle.css'
 
 export const Home = () => {
   const [show, setShow] = useState(false);
@@ -28,7 +28,7 @@ export const Home = () => {
 
       {/*Website Name*/}
 
-      <Container className={homeStyle.color}>
+      <Container>
         <Row>
           <Col className="py-5 d-flex justify-content-center">
             <h1>Fork It!</h1>
@@ -46,7 +46,7 @@ export const Home = () => {
       <Container fluid>
         <Row>
           <Col md={6} className="d-grid gap-2 mx-auto">
-            <Button className={homeStyle.target} onClick={handleShow}>Create Group</Button>
+            <Button className="target" onClick={handleShow}>Create Group</Button>
 
             {/*Create group modal*/}
 
@@ -83,7 +83,7 @@ export const Home = () => {
           {/*Flying Solo*/}
 
           <Col md={6} className="d-grid gap-2 mx-auto">
-            <Button className={homeStyle.target} onClick={handleShow3}>Flying Solo</Button>
+            <Button className="target" onClick={handleShow3}>Flying Solo</Button>
 
             <Modal show={show3} onHide={handleClose3}>
               <Modal.Header closeButton>
