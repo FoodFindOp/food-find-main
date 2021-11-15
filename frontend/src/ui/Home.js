@@ -2,8 +2,8 @@ import React from "react"
 import { useState } from 'react'
 import { Container, Row, Col, Button, Modal, Form } from 'react-bootstrap'
 import background from './Background.module.css'
-import buttons from './Buttons.module.css'
-import './Bg.css'
+import buttons from './shared/components/Buttons.module.css'
+import './shared/components/Bg.css'
 export const Home = () => {
 
   const [show, setShow] = useState(false);
@@ -25,9 +25,7 @@ export const Home = () => {
 
       {/*Website Name*/}
 
-
-
-      <Container>
+      <Container className="text-light">
         <Row>
           <Col className="py-5 d-flex justify-content-center">
             <h1>Fork It!</h1>
