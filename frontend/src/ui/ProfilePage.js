@@ -1,5 +1,6 @@
 import React from "react";
 import {Col, Container, Form, Row} from "react-bootstrap";
+import './shared/components/Bg.css'
 
 export const ProfilePage = () => {
 
