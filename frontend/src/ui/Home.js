@@ -1,9 +1,9 @@
 import React from "react"
 import { useState } from 'react'
 import { Container, Row, Col, Button, Modal, Form } from 'react-bootstrap'
-import background from './Background.module.css'
 import buttons from './shared/components/Buttons.module.css'
 import './shared/components/Bg.css'
+
 export const Home = () => {
 
   const [show, setShow] = useState(false);
