@@ -5,6 +5,7 @@ import { Home } from './Home'
 import { ProfilePage } from './ProfilePage'
 import { LandingPage } from './LandingPage'
 import { SwiperPage } from './SwiperPage'
+import { WinnerPage } from './WinnerPage'
 import { FourOhFour } from './FourOhFour'
 import { MainNav } from './shared/components/MainNav'
 
@@ -23,6 +24,7 @@ export const App = () => (
         <Route exact path='/' component={Home} />
           <Route exact path='/profile-page' component={ProfilePage} />
         <Route exact path='/swiper-page' component={SwiperPage} />
+        <Route exact path='/winner-page' component={WinnerPage} />
         <Route component={FourOhFour} />
       </Switch>
     </BrowserRouter>
