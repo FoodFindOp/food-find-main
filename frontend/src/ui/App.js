@@ -1,19 +1,16 @@
+import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { Route, Switch } from 'react-router'
 import { Home } from './Home'
+import { ProfilePage } from "./ProfilePage"
+import { LandingPage } from './LandingPage'
 import { FourOhFour } from './FourOhFour'
-import { LandingPage } from './LandingPage';
-import React from 'react'
-import { library } from '@fortawesome/fontawesome-svg-core'
+import { MainNav } from './shared/components/MainNav'
 
+import { library } from '@fortawesome/fontawesome-svg-core'
 import {faUtensils} from "@fortawesome/free-solid-svg-icons";
 library.add( faUtensils );
 
-
-
-import {ProfilePage} from "./ProfilePage";
-
-import { MainNav } from './shared/components/MainNav'
 
 
 export const App = () => (
