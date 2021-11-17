@@ -1,4 +1,5 @@
 import React from "react"
+
 import { useState } from 'react'
 import { Container, Row, Col, Button, Modal, Form } from 'react-bootstrap'
 import buttons from './shared/components/Buttons.module.css'
@@ -126,5 +127,7 @@ export const Home = () => {
         </Row>
       </Container>
   </>
+
   )
 }
+
