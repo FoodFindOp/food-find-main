@@ -4,6 +4,12 @@ import { Home } from './Home'
 import { FourOhFour } from './FourOhFour'
 import { LandingPage } from './LandingPage';
 import React from 'react'
+import { library } from '@fortawesome/fontawesome-svg-core'
+
+import {faUtensils} from "@fortawesome/free-solid-svg-icons";
+library.add( faUtensils );
+
+
 
 export const App = () => (
   <>
