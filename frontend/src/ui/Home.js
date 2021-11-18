@@ -1,30 +1,27 @@
-import React from "react"
-
+import React from 'react'
 import { useState } from 'react'
-import { Container, Row, Col, Button, Modal, Form } from 'react-bootstrap'
+import { Container, Row, Col, Button, Modal, Form, Nav } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import buttons from './shared/components/Buttons.module.css'
 import './shared/components/Bg.css'
 
 export const Home = () => {
 
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false)
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
 
-  const [show3, setShow3] = useState(false);
+  const [show3, setShow3] = useState(false)
 
-  const handleClose3 = () => setShow3(false);
-  const handleShow3 = () => setShow3(true);
-
+  const handleClose3 = () => setShow3(false)
+  const handleShow3 = () => setShow3(true)
 
   return (
 
+    <>
 
-
-  <>
-
-      {/*Website Name*/}
+      {/*Title*/}
 
       <Container className="text-light">
         <Row>
@@ -62,7 +59,7 @@ export const Home = () => {
                 <Form>
                   <Form.Group className="mb-3" controlId="formGroupAddress">
                     <Form.Label>Location</Form.Label>
-                    <Form.Control type="address" placeholder="Enter address" />
+                    <Form.Control type="address" placeholder="Enter address"/>
                   </Form.Group>
                   <Form.Group as={Col} controlId="formGridRadius">
                     <Form.Label>Radius</Form.Label>
@@ -77,9 +74,13 @@ export const Home = () => {
 
               </Modal.Body>
               <Modal.Footer>
-                <Button variant="primary" onClick={handleClose}>
-                  Start Game!
-                </Button>
+                <Nav.Link>
+                  <Link to="/swiper-page">
+                    <Button variant="primary" onClick={handleClose}>
+                      Start Game!
+                    </Button>
+                  </Link>
+                </Nav.Link>
               </Modal.Footer>
             </Modal>
           </Col>
@@ -102,7 +103,7 @@ export const Home = () => {
                 <Form>
                   <Form.Group className="mb-3" controlId="formGroupAddress">
                     <Form.Label>Location</Form.Label>
-                    <Form.Control type="address" placeholder="Enter address" />
+                    <Form.Control type="address" placeholder="Enter address"/>
                   </Form.Group>
                   <Form.Group as={Col} controlId="formGridRadius">
                     <Form.Label>Radius</Form.Label>
@@ -117,17 +118,19 @@ export const Home = () => {
 
               </Modal.Body>
               <Modal.Footer>
-                <Button variant="primary" onClick={handleClose}>
-                  Start Game!
-                </Button>
+                <Nav.Link>
+                  <Link to="/swiper-page">
+                    <Button variant="primary" onClick={handleClose}>
+                      Start Game!
+                    </Button>
+                  </Link>
+                </Nav.Link>
               </Modal.Footer>
             </Modal>
           </Col>
-
         </Row>
       </Container>
-  </>
-
+    </>
   )
 }
 
