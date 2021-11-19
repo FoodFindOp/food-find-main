@@ -34,17 +34,6 @@ export const WinnerPage = () => {
           <Col className="col-md-6 d-flex justify-content-center my-5">
             <Card style={{ width: '18rem' }}>
 
-              {/*Menu*/}
-
-              <Card.Body>
-                <Card.Title>Menu</Card.Title>
-                <Card.Text>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda commodi quae temporibus. In
-                  reprehenderit saepe voluptatem? Cum, eveniet explicabo odit porro quisquam rerum temporibus
-                  voluptatum?
-                </Card.Text>
-              </Card.Body>
-
               {/*Reviews*/}
 
               <Card.Body>
