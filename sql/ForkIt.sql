@@ -10,8 +10,8 @@ CREATE TABLE profile
     profileActivationToken CHAR(32),
     profileEmail VARCHAR(128) NOT NULL,
     profileHash CHAR(97) NOT NULL,
-    profileHashConfirm CHAR(97) NOT NULL,
-    UNIQUE(profileEmail) ,
+    profileName VARCHAR(32) NOT NULL,
+    UNIQUE(profileEmail),
     PRIMARY KEY(profileId)
 );
 
@@ -28,8 +28,9 @@ CREATE TABLE restaurant
 CREATE TABLE review
 (
     reviewId BINARY(16) NOT NULL,
-    reviewText VARCHAR(1024) NOT NULL,
     reviewRestaurantId BINARY(16),
+    reviewStarRating VARCHAR(16) NOT NULL,
+    reviewText VARCHAR(1024) NOT NULL,
     INDEX(reviewRestaurantId),
     FOREIGN KEY(reviewRestaurantId) REFERENCES restaurant(restaurantId),
     PRIMARY KEY(reviewId)
