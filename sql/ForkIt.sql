@@ -11,8 +11,7 @@ CREATE TABLE profile
     profileEmail VARCHAR(128) NOT NULL,
     profileHash CHAR(97) NOT NULL,
     profileHashConfirm CHAR(97) NOT NULL,
-    UNIQUE(profileEmail),
-    INDEX(profileEmail),
+    UNIQUE(profileEmail) ,
     PRIMARY KEY(profileId)
 );
 
@@ -22,6 +21,7 @@ CREATE TABLE restaurant
     restaurantImage VARCHAR(255) NOT NULL,
     restaurantLocation VARCHAR(16) NOT NULL,
     restaurantName VARCHAR(32) NOT NULL,
+    restaurantStarRating VARCHAR(16) NOT NULL,
     PRIMARY KEY(restaurantId)
 );
 
@@ -38,7 +38,8 @@ CREATE TABLE review
 CREATE TABLE session
 (
     sessionId BINARY(16) NOT NULL,
-    sessionProfileId BINARY(16),
+    sessionProfileId BINARY(16) NOT NULL,
+    sessionSocketId VARCHAR(64),
     INDEX(sessionProfileId),
     FOREIGN KEY(sessionProfileId) REFERENCES profile(profileId),
     PRIMARY KEY(sessionId)
@@ -47,9 +48,9 @@ CREATE TABLE session
 CREATE TABLE vote
 (
 
-    voteProfileId BINARY(16),
-    voteRestaurantId BINARY(16),
-    voteSessionId BINARY(16),
+    voteProfileId BINARY(16) NOT NULL,
+    voteRestaurantId BINARY(16) NOT NULL,
+    voteSessionId BINARY(16) NOT NULL,
     voteLiked TINYINT NOT NULL,
     INDEX(voteProfileId),
     INDEX(voteRestaurantId),
