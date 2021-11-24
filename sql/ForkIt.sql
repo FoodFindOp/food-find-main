@@ -18,17 +18,20 @@ CREATE TABLE profile
 CREATE TABLE restaurant
 (
     restaurantId BINARY(16) NOT NULL,
+    restaurantAddress VARCHAR(128) NOT NULL,
     restaurantImage VARCHAR(255) NOT NULL,
-    restaurantLocation VARCHAR(16) NOT NULL,
+    restaurantLatitude DECIMAL(8,5),
+    restaurantLongitude DECIMAL(8,5),
     restaurantName VARCHAR(32) NOT NULL,
-    restaurantStarRating VARCHAR(16) NOT NULL,
+    restaurantPhone VARCHAR(32) NOT NULL,
+    restaurantStarRating TINYINT NOT NULL,
     PRIMARY KEY(restaurantId)
 );
 
 CREATE TABLE review
 (
     reviewId BINARY(16) NOT NULL,
-    reviewRestaurantId BINARY(16),
+    reviewRestaurantId BINARY(16) NOT NULL,
     reviewStarRating VARCHAR(16) NOT NULL,
     reviewText VARCHAR(1024) NOT NULL,
     INDEX(reviewRestaurantId),
