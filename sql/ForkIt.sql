@@ -51,7 +51,6 @@ CREATE TABLE session
 
 CREATE TABLE vote
 (
-
     voteProfileId BINARY(16) NOT NULL,
     voteRestaurantId BINARY(16) NOT NULL,
     voteSessionId BINARY(16) NOT NULL,
