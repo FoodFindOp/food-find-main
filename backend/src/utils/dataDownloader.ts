@@ -3,7 +3,6 @@ import {connect} from "./database.utils";
 import {ResultSetHeader, RowDataPacket} from 'mysql2';
 
 interface restaurant {
-    postId: string | null,
     restaurantId: string | null,
     restaurantAddress: string,
     restaurantImage: string,
@@ -27,7 +26,7 @@ function dataDownloader() : Promise<any> {
 
     async function downloadRestaurant() {
         try {
-            const restaurant = await axios.get("https://www.yelp.com/developers/documentation/v3/business_search")
+            const restaurant = await axios.get("https://api.yelp.com/v3/businesses/restaurants")
 
             const mySqlConnection = await connect()
             const mySqlQuery = "INSERT INTO restaurant (restaurantId, restaurantAddress, restaurantImage, restaurantLatitude, restaurantLongitude, restaurantName, restaurantPhone, restaurantStarRating) VALUES (UUID_TO_BIN(UUID()), :restaurantAddress, :restaurantImage, :restaurantLatitude, :restaurantLongitude, :restaurantName, :restaurantPhone, :restaurantStarRating)"

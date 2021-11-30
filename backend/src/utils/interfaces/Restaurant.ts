@@ -1,11 +1,10 @@
-export interface restaurant {
-    postId: string | null,
+export interface Restaurant {
     restaurantId: string | null,
     restaurantAddress: string,
     restaurantImage: string,
-    restaurantLatitude: string
-    restaurantLongitude: string
-    restaurantName: string
-    restaurantPhone: string
+    restaurantLatitude: string,
+    restaurantLongitude: string,
+    restaurantName: string,
+    restaurantPhone: string,
     restaurantStarRating: string
 }
