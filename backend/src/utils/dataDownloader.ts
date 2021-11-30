@@ -19,15 +19,17 @@ function dataDownloader() : Promise<any> {
         try {
             await downloadRestaurant()
 
-        } catch (e) {
-            console.log(e)
+        } catch (e:any) {
+            console.error(e.message)
         }
     }
 
     async function downloadRestaurant() {
         try {
-            const restaurant = await axios.get("https://api.yelp.com/v3/businesses/restaurants")
-
+            const restaurant = await axios.get('https://api.yelp.com/v3/businesses/search/',
+            {
+               params:{term:"restaurants", location:"2201 S Washington St #2411, Amarillo, TX 79109", },
+                    headers: {'Authorization': `Bearer ${process.env.YELP_API}`}})
             const mySqlConnection = await connect()
             const mySqlQuery = "INSERT INTO restaurant (restaurantId, restaurantAddress, restaurantImage, restaurantLatitude, restaurantLongitude, restaurantName, restaurantPhone, restaurantStarRating) VALUES (UUID_TO_BIN(UUID()), :restaurantAddress, :restaurantImage, :restaurantLatitude, :restaurantLongitude, :restaurantName, :restaurantPhone, :restaurantStarRating)"
                 // Change this part.  Instead of putting the posts into an arrray insert them into the database.
