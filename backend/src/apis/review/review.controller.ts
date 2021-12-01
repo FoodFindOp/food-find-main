@@ -1,6 +1,4 @@
 import {Request, Response} from 'express';
-
-// Interfaces (represent the DB model and types of the columns associated with a specific DB table)
 import {Status} from '../../utils/interfaces/Status';
 import {selectReviewByReviewId} from '../../utils/review/selectReviewByReviewId';
 

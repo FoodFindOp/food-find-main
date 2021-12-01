@@ -2,9 +2,12 @@ import axios from "axios"
 import {connect} from "./database.utils";
 import {ResultSetHeader, RowDataPacket} from 'mysql2';
 import {Restaurant} from "./interfaces/Restaurant";
-import {Review} from "./interfaces/Review";
+import {PartialReview, Review} from "./interfaces/Review";
 
 import {v4 as uuid} from "uuid";
+import {insertRestaurant} from "./restaurant/insertRestaurant";
+import {insertReview} from "./review/insertReview";
+
 
 
 
@@ -26,12 +29,12 @@ function dataDownloader() : Promise<any> {
                params:{ location:"79109" },
                     headers: {'Authorization': `Bearer ${process.env.YELP_API}`}})
 
-            console.log(reply.data.businesses)
+            // console.log(reply.data.businesses)
             for (let yelpRestaurant of reply.data.businesses) {
                 // console.log(yelpRestaurant["is_closed"])
                 const restaurant :Restaurant = {
                     restaurantId: uuid(),
-                    restaurantAddress: yelpRestaurant.location['display_address'],
+                    restaurantAddress: yelpRestaurant.location['display_address'].join(", "),
                     restaurantImage: yelpRestaurant['image_url'],
                     restaurantLatitude: yelpRestaurant.coordinates['latitude'],
                     restaurantLongitude: yelpRestaurant.coordinates['longitude'],
@@ -40,24 +43,35 @@ function dataDownloader() : Promise<any> {
                     restaurantStarRating: yelpRestaurant['rating']
                 }
                 console.log(restaurant)
+                await insertRestaurant(restaurant)
+                await downloadReview(yelpRestaurant['id'], restaurant.restaurantId as string)
             }
 
         } catch (error) {
             throw error
         }
     }
-    // async function downloadReview() {
-    //     try {
-    //         const reply = await axios.get('https://api.yelp.com/v3/businesses/f5d5cfe8-d2bb-462d-a4d4-00fd07cea7c9/reviews',
-    //             {headers: {'Authorization': `Bearer ${process.env.YELP_API}`}})
-    //         for (let yelpRestaurant of reply.data.businesses) {
-    //             console.log(reply.data.businesses)
-    //         }
-    //
-    //     } catch (error) {
-    //         throw error
-    //     }
-    // }
+    async function downloadReview(yelpId:string, reviewRestaurantId:string) {
+        try {
+            const reply = await axios.get(`https://api.yelp.com/v3/businesses/${yelpId}/reviews`,
+                {headers: {'Authorization': `Bearer ${process.env.YELP_API}`}})
+            // console.log(reply.data.reviews)
+
+            for (let yelpReview of reply.data.reviews) {
+                const review :Review = {
+                    reviewId: uuid(),
+                    reviewRestaurantId,
+                    reviewStarRating: yelpReview['rating'],
+                    reviewText: yelpReview['text']
+                }
+                console.log(review)
+                await insertReview(review)
+            }
+
+        } catch (error) {
+            throw error
+        }
+    }
 }
 
 dataDownloader().catch(error => console.error(error))
