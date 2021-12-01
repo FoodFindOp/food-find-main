@@ -1,17 +1,12 @@
 import axios from "axios"
 import {connect} from "./database.utils";
 import {ResultSetHeader, RowDataPacket} from 'mysql2';
+import {Restaurant} from "./interfaces/Restaurant";
+import {Review} from "./interfaces/Review";
 
-interface restaurant {
-    restaurantId: string | null,
-    restaurantAddress: string,
-    restaurantImage: string,
-    restaurantLatitude: string
-    restaurantLongitude: string
-    restaurantName: string
-    restaurantPhone: string
-    restaurantStarRating: string
-}
+import {v4 as uuid} from "uuid";
+
+
 
 function dataDownloader() : Promise<any> {
     return main()
@@ -26,20 +21,43 @@ function dataDownloader() : Promise<any> {
 
     async function downloadRestaurant() {
         try {
-            const restaurant = await axios.get('https://api.yelp.com/v3/businesses/search/',
+            const reply = await axios.get('https://api.yelp.com/v3/businesses/search',
             {
-               params:{term:"restaurants", location:"2201 S Washington St #2411, Amarillo, TX 79109", },
+               params:{ location:"79109" },
                     headers: {'Authorization': `Bearer ${process.env.YELP_API}`}})
-            const mySqlConnection = await connect()
-            const mySqlQuery = "INSERT INTO restaurant (restaurantId, restaurantAddress, restaurantImage, restaurantLatitude, restaurantLongitude, restaurantName, restaurantPhone, restaurantStarRating) VALUES (UUID_TO_BIN(UUID()), :restaurantAddress, :restaurantImage, :restaurantLatitude, :restaurantLongitude, :restaurantName, :restaurantPhone, :restaurantStarRating)"
-                // Change this part.  Instead of putting the posts into an arrray insert them into the database.
-                // See https://github.com/Deep-Dive-Coding-Fullstack-Licensing/example-capstone/blob/development/backend/utils/tweet/insertTweet.ts for example.
-            const [result]= await mySqlConnection.execute(mySqlQuery, restaurant) as [ResultSetHeader, RowDataPacket]
-            return "Tweet created successfully"
+
+            console.log(reply.data.businesses)
+            for (let yelpRestaurant of reply.data.businesses) {
+                // console.log(yelpRestaurant["is_closed"])
+                const restaurant :Restaurant = {
+                    restaurantId: uuid(),
+                    restaurantAddress: yelpRestaurant.location['display_address'],
+                    restaurantImage: yelpRestaurant['image_url'],
+                    restaurantLatitude: yelpRestaurant.coordinates['latitude'],
+                    restaurantLongitude: yelpRestaurant.coordinates['longitude'],
+                    restaurantName: yelpRestaurant['name'],
+                    restaurantPhone: yelpRestaurant['display_phone'],
+                    restaurantStarRating: yelpRestaurant['rating']
+                }
+                console.log(restaurant)
+            }
+
         } catch (error) {
             throw error
         }
     }
+    // async function downloadReview() {
+    //     try {
+    //         const reply = await axios.get('https://api.yelp.com/v3/businesses/f5d5cfe8-d2bb-462d-a4d4-00fd07cea7c9/reviews',
+    //             {headers: {'Authorization': `Bearer ${process.env.YELP_API}`}})
+    //         for (let yelpRestaurant of reply.data.businesses) {
+    //             console.log(reply.data.businesses)
+    //         }
+    //
+    //     } catch (error) {
+    //         throw error
+    //     }
+    // }
 }
 
 dataDownloader().catch(error => console.error(error))
