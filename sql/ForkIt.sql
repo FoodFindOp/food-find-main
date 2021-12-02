@@ -22,7 +22,7 @@ CREATE TABLE restaurant
     restaurantImage VARCHAR(255) NOT NULL,
     restaurantLatitude DECIMAL(8,5),
     restaurantLongitude DECIMAL(8,5),
-    restaurantName VARCHAR(32) NOT NULL,
+    restaurantName VARCHAR(64) NOT NULL,
     restaurantPhone VARCHAR(32) NOT NULL,
     restaurantStarRating TINYINT NOT NULL,
     PRIMARY KEY(restaurantId)
