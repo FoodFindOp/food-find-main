@@ -2,7 +2,7 @@ import axios from "axios"
 import {connect} from "./database.utils";
 import {ResultSetHeader, RowDataPacket} from 'mysql2';
 import {Restaurant} from "./interfaces/Restaurant";
-import {PartialReview, Review} from "./interfaces/Review";
+import {Review} from "./interfaces/Review";
 
 import {v4 as uuid} from "uuid";
 import {insertRestaurant} from "./restaurant/insertRestaurant";
@@ -26,7 +26,7 @@ function dataDownloader() : Promise<any> {
         try {
             const reply = await axios.get('https://api.yelp.com/v3/businesses/search',
             {
-               params:{ location:"79109" },
+               params:{ location:"79124" },
                     headers: {'Authorization': `Bearer ${process.env.YELP_API}`}})
 
             // console.log(reply.data.businesses)
