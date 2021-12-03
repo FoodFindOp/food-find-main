@@ -3,9 +3,7 @@ import { asyncValidatorController } from '../../utils/controllers/asyncValidator
 import {insertSession} from "../../utils/session/insertSession";
 import {check} from 'express-validator';
 
-const router = Router();
-router.route("/:sessionId").get(  asyncValidatorController([
+export const sessionRouter = Router();
+sessionRouter.route("/:sessionId").get(  asyncValidatorController([
     check("sessionId", "please provide a valid sessionId").isUUID()
 ]),)
-
-export default router;
