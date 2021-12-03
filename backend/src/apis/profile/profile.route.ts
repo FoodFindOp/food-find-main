@@ -7,7 +7,7 @@ import {profileValidator} from "./profile.validator";
 
 export const ProfileRoute: Router = Router();
 ProfileRoute.route('/')
-    .post(putProfileController);
+.post(asyncValidatorController(checkSchema(profileValidator)), putProfileController);
 
 ProfileRoute.route("/:profileId")
     .get(
