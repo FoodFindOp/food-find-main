@@ -5,7 +5,7 @@ import { indexRoute } from './apis/index.route'
 import {SignInRouter} from "./apis/sign-in/sign-in.route";
 import SignupRoute from './apis/sign-up/sign-up.route';
 import {SignOutRoute} from "./apis/sign-out/sign-out.route";
-
+import {VoteRoute} from "./apis/vote/vote.route";
 
 // The following class creates the app and instantiates the server
 export class App {
@@ -38,8 +38,8 @@ export class App {
         this.app.use('/apis/sign-up', SignupRoute);
         this.app.use('/apis/sign-in', SignInRouter);
         this.app.use('/apis/sign-out', SignOutRoute);
+        this.app.use('/apis/vote', VoteRoute);
     }
-
     // starts the server and tells the terminal to post a message that the server is running and on what port
     public async listen (): Promise<void> {
         await this.app.listen(this.app.get('port'))
