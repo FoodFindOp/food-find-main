@@ -4,6 +4,7 @@ import {selectPartialProfileByProfileId} from "../../utils/profile/selectPartial
 import {Status} from "../../utils/interfaces/Status";
 import {selectWholeProfileByProfileId} from "../../utils/profile/selectWholeProfileByProfileId";
 import {updateProfile} from "../../utils/profile/updateProfile";
+import {selectProfileByProfileEmail} from "../../utils/profile/selectProfileByProfileEmail";
 
 export async function putProfileController(request: Request, response: Response) : Promise<Response>{
     try {
@@ -42,7 +43,17 @@ export async function getProfileByProfileId(request: Request, response: Response
 
     } catch (error: any) {
         return(response.json({status: 400, data: null, message: error.message}))
-
     }
+}
 
+export async function getProfileByProfileEmail(request: Request, response: Response) : Promise<Response> {
+    try {
+        const {profileEmail} = request.params;
+        const mySqlResult = await selectProfileByProfileEmail(profileEmail);
+        const data = mySqlResult ?? null
+        const status: Status = {status: 200, data, message: null}
+            return response.json(status)
+    } catch (error: any) {
+        return(response.json({status: 400, data: null, message: error.message}))
+    }
 }
