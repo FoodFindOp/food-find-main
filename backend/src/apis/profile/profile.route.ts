@@ -1,4 +1,4 @@
-import {getProfileByProfileId, putProfileController} from "./profile.controller";
+import {getProfileByProfileId, putProfileController, getProfileByProfileEmail} from "./profile.controller";
 import {Router} from "express";
 import {asyncValidatorController} from "../../utils/controllers/asyncValidator.controller";
 import {check, checkSchema} from "express-validator";
@@ -7,7 +7,7 @@ import {profileValidator} from "./profile.validator";
 
 export const ProfileRoute: Router = Router();
 ProfileRoute.route('/')
-    .post(putProfileController);
+.post(asyncValidatorController(checkSchema(profileValidator)), putProfileController);
 
 ProfileRoute.route("/:profileId")
     .get(
@@ -17,3 +17,12 @@ ProfileRoute.route("/:profileId")
         , getProfileByProfileId
     )
     .put(isLoggedIn, asyncValidatorController(checkSchema(profileValidator)), putProfileController)
+
+ProfileRoute.route("/profile-email/:profileEmail")
+    .get(
+        asyncValidatorController([
+            check("profileEmail", "please provide a valid email address").isEmail()
+        ])
+        , getProfileByProfileEmail
+    )
+    .put(asyncValidatorController(checkSchema(profileValidator)), putProfileController)
