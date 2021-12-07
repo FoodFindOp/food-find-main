@@ -44,6 +44,7 @@ export class App {
         this.app.use(morgan('dev'))
         this.app.use(express.json())
         this.app.use(session(sessionConfig));
+        this.app.use()
     }
 
     // private method for setting up routes in their basic sense (ie. any route that performs an action on profiles starts with /profiles)
