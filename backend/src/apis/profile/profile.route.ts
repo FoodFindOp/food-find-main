@@ -16,7 +16,7 @@ ProfileRoute.route("/:profileId")
         ])
         , getProfileByProfileId
     )
-    .put(isLoggedIn, asyncValidatorController(checkSchema(profileValidator)), putProfileController)
+    .put(asyncValidatorController(checkSchema(profileValidator)), putProfileController)
 
 ProfileRoute.route("/profile-email/:profileEmail")
     .get(
