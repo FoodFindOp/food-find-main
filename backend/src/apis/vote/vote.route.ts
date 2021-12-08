@@ -4,17 +4,23 @@ import {check, checkSchema} from 'express-validator';
 import {
     getAllVoteController,
     getVoteByPrimaryKey,
-    getVoteByVoteProfileId,
-    getVoteByVoteRestaurantId,
-    getVoteByVoteSessionId
+    getVoteByProfileId,
+    getVoteByRestaurantId,
+    getVoteBySessionId, postVote
 } from "./vote.controller";
 import {voteValidator} from "./vote.validator";
+import {insertVote} from "../../utils/vote/insertVote";
+import {isLoggedIn} from "../../utils/controllers/isLoggedIn.controller";
+import {sessionValidator} from "../session/session.validator";
+import {postSession} from "../session/session.controller";
 
 
 export const VoteRoute = Router();
 
 VoteRoute.route("/")
     .get(getAllVoteController)
+    .post(isLoggedIn, asyncValidatorController(checkSchema(voteValidator)),postVote)
+
 
 VoteRoute.route("/primaryKey")
     .get(asyncValidatorController(checkSchema(voteValidator)),
@@ -25,17 +31,20 @@ VoteRoute.route("/primaryKey")
 VoteRoute.route("/profileId/:profileId")
     .get(asyncValidatorController([check("profileId").isUUID()
     ]),
-    getVoteByVoteProfileId
+    getVoteByProfileId
     )
 
 VoteRoute.route("/sessionId/:sessionId")
     .get(asyncValidatorController([check("sessionId").isUUID()
     ]),
-        getVoteByVoteSessionId
+        getVoteBySessionId
         )
 
 VoteRoute.route("/restaurantId/:restaurantId")
     .get(asyncValidatorController([check("restaurantId").isUUID()
     ]),
-        getVoteByVoteRestaurantId
+        getVoteByRestaurantId
         )
+
+
+

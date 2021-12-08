@@ -11,11 +11,6 @@ export const voteValidator:Schema = {
             errorMessage: "Please provide a valid restaurant"
         }
     },
-    voteProfileId: {
-        isUUID: {
-            errorMessage: "Please provide a valid profileId"
-        }
-    },
     voteLiked: {
         isBoolean: {errorMessage: "Please provide a boolean"
         },
