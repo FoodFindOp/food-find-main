@@ -6,6 +6,9 @@ import {getAllSession, getSessionBySessionId, getSessionBySessionProfileId, post
 import {isLoggedIn} from "../../utils/controllers/isLoggedIn.controller";
 import {sessionValidator} from "./session.validator";
 
+
+
+
 export const SessionRouter = Router();
 SessionRouter.route("/:sessionId").get(asyncValidatorController([
     check("sessionId", "please provide a valid sessionId").isUUID()
