@@ -2,7 +2,10 @@ import {Status} from "../../utils/interfaces/Status";
 import {Request, Response} from "express";
 import {selectAllSession} from "../../utils/session/getAllSession";
 import {selectSessionBySessionId} from "../../utils/session/selectSessionBySessionId";
-import {putSession} from "../../utils/session/putSession";
+import {selectSessionBySessionProfileId} from "../../utils/session/getSessionBySessionProfileId";
+import {Profile} from "../../utils/interfaces/Profile";
+import {insertSession} from "../../utils/session/insertSession";
+
 
 
 export async function getSessionBySessionId(request: Request, response: Response) : Promise<Response> {
@@ -22,7 +25,6 @@ export async function getSessionBySessionId(request: Request, response: Response
 
 export async function getAllSession(request: Request, response: Response) : Promise<Response> {
     try {
-        const {sessionId} = request.params;
         const mySqlResult = await selectAllSession();
         const data = mySqlResult ?? null
         const status: Status = {status: 200, data, message: null}
@@ -35,11 +37,14 @@ export async function getAllSession(request: Request, response: Response) : Prom
 
 }
 
-export async function insertSession(request: Request, response: Response) :
+export async function postSession(request: Request, response: Response) :
     Promise<Response> {
         try {
-            const {sessionId} = request.params;
-            const mySqlResult = await putSession(sessionId);
+            const profile : Profile = request.session.profile as Profile
+            const sessionProfileId : string = <string>profile.profileId
+            const {sessionSocketId} = request.body
+            const session = {sessionId: null, sessionProfileId, sessionSocketId}
+            const mySqlResult = await insertSession(session);
             const data = mySqlResult ?? null
             const status: Status = {status: 200, data, message:null}
             return response.json(status)
@@ -48,5 +53,37 @@ export async function insertSession(request: Request, response: Response) :
             return(response.json({status: 400, data: null, message: error.message}))
 
         }
+
+}
+
+export async function getSessionBySessionProfileId(request: Request, response: Response) : Promise<Response> {
+    try {
+        const profile : Profile = request.session.profile as Profile
+        const profileId : string = <string>profile.profileId
+        const mySqlResult = await selectSessionBySessionProfileId(profileId);
+        const data = mySqlResult ?? null
+        const status: Status = {status: 200, data, message: null}
+        return response.json(status)
+
+    } catch (error: any) {
+        return(response.json({status: 400, data: null, message: error.message}))
+
+    }
+
+}
+
+
+export async function getSessionBySessionSocketId(request: Request, response: Response) : Promise<Response> {
+    try {
+        const {sessionSocketId} = request.params;
+        const mySqlResult = await selectSessionBySessionId(sessionSocketId);
+        const data = mySqlResult ?? null
+        const status: Status = {status: 200, data, message: null}
+        return response.json(status)
+
+    } catch (error: any) {
+        return(response.json({status: 400, data: null, message: error.message}))
+
+    }
 
 }

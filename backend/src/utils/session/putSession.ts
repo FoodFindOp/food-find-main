@@ -1,7 +1,7 @@
 import {connect} from "../database.utils";
 import {Session} from "../interfaces/Session";
 
-export async function putSession(session: Session) : Promise<string>{
+export async function insertSession(session: Session) : Promise<string>{
     try {
         const mysqlConnection = await connect();
         const query : string = 'INSERT INTO session(sessionId, sessionProfileId, sessionSocketId) VALUES (UUID_TO_BIN(UUID()) , :sessionId, :sessionProfileId, :sessionSocketId)';
