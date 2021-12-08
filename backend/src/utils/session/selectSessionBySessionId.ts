@@ -6,7 +6,7 @@ export async function selectSessionBySessionId(sessionId: string)
 {
     try {
         const mysqlConnection = await connect();
-        const query: string = 'SELECT BIN_TO_UUID(sessionId) as sessionId, sessionProfileId, sessionSocketId FROM `session` WHERE sessionId = UUID_TO_BIN(:sessionId)';
+        const query: string = 'SELECT BIN_TO_UUID(sessionId) as sessionId, BIN_TO_UUID(sessionProfileId) as sessionProfileId, sessionSocketId FROM `session` WHERE sessionId = :sessionId';
         const result = await mysqlConnection.execute(query, {sessionId:sessionId})as RowDataPacket[];
         const sessions: Session[] = result[0] as Session[]
         return sessions.length === 1 ? {...sessions[0]} : null

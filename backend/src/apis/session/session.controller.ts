@@ -5,6 +5,7 @@ import {selectSessionBySessionId} from "../../utils/session/selectSessionBySessi
 import {selectSessionBySessionProfileId} from "../../utils/session/getSessionBySessionProfileId";
 import {Profile} from "../../utils/interfaces/Profile";
 import {insertSession} from "../../utils/session/insertSession";
+import {selectSessionBySocketId} from "../../utils/session/selectSessionBySocketId";
 
 
 
@@ -76,7 +77,8 @@ export async function getSessionBySessionProfileId(request: Request, response: R
 export async function getSessionBySessionSocketId(request: Request, response: Response) : Promise<Response> {
     try {
         const {sessionSocketId} = request.params;
-        const mySqlResult = await selectSessionBySessionId(sessionSocketId);
+        console.log(sessionSocketId)
+        const mySqlResult = await selectSessionBySocketId(sessionSocketId);
         const data = mySqlResult ?? null
         const status: Status = {status: 200, data, message: null}
         return response.json(status)
