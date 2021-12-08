@@ -4,11 +4,22 @@ import {selectAllVote} from "../../utils/vote/selectAllVote";
 import {selectVoteByVoteProfileId } from "../../utils/vote/selectVoteByVoteProfileId";
 import {selectVoteByVoteRestaurantId} from "../../utils/vote/selectVoteByVoteRestaurantId";
 import {selectVoteByVoteSessionId} from "../../utils/vote/selectVoteByVoteSessionId";
+import {selectVoteByPrimaryKey} from "../../utils/vote/selectVoteByPrimaryKey";
 
-
-export async function getAllVoteController(request: Request, response: Response){
+export async function getAllVoteController(request: Request, response: Response) {
     try {
         const data = await selectAllVote()
+        const status: Status = {status: 200, message: null, data};
+        return response.json(status);
+    } catch (error){
+        console.log(error);
+    }
+}
+
+export async function getVoteByPrimaryKey(request: Request, response: Response) {
+    try {
+        const {voteProfileId, voteSessionId, voteRestaurantId} = request.params;
+        const data = await selectVoteByPrimaryKey(voteProfileId, voteSessionId, voteRestaurantId)
         const status: Status = {status: 200, message: null, data};
         return response.json(status);
     } catch (error){

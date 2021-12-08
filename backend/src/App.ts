@@ -11,6 +11,8 @@ import {SessionRouter} from "./apis/session/session.route";
 import {ProfileRoute} from "./apis/profile/profile.route";
 import RestaurantRouter from "./apis/restaurant/restaurant.route";
 import ReviewRouter from "./apis/review/review.route";
+import {VoteRoute} from "./apis/vote/vote.route";
+
 
 // The following class creates the app and instantiates the server
 export class App {
@@ -53,12 +55,15 @@ export class App {
         this.app.use('/apis/sign-up', SignupRoute);
         this.app.use('/apis/sign-in', SignInRouter);
         this.app.use('/apis/sign-out', SignOutRoute);
+
         this.app.use('/apis/session', SessionRouter);
         this.app.use('/apis/profile', ProfileRoute);
         this.app.use('/apis/restaurant', RestaurantRouter);
         this.app.use('/apis/review', ReviewRouter);
-    }
 
+        this.app.use('/apis/vote', VoteRoute);
+
+    }
     // starts the server and tells the terminal to post a message that the server is running and on what port
     public async listen (): Promise<void> {
         await this.app.listen(this.app.get('port'))
