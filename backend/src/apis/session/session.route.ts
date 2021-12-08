@@ -2,7 +2,13 @@ import { Router } from 'express';
 import { asyncValidatorController } from '../../utils/controllers/asyncValidator.controller';
 import {insertSession} from "../../utils/session/insertSession";
 import {check, checkSchema} from 'express-validator';
-import {getAllSession, getSessionBySessionId, getSessionBySessionProfileId, postSession} from "./session.controller";
+import {
+    getAllSession,
+    getSessionBySessionId,
+    getSessionBySessionProfileId,
+    getSessionBySessionSocketId,
+    postSession
+} from "./session.controller";
 import {isLoggedIn} from "../../utils/controllers/isLoggedIn.controller";
 import {sessionValidator} from "./session.validator";
 
@@ -15,8 +21,11 @@ SessionRouter.route("/:sessionId").get(asyncValidatorController([
 ]),
     getSessionBySessionId
     )
-SessionRouter.route("/sessionProfileId").get(isLoggedIn, getSessionBySessionProfileId)
-SessionRouter.route("/sessionSocketId/:socketSessionId").get(isLoggedIn, asyncValidatorController(checkSchema(sessionValidator)), getSessionBySessionProfileId)
-SessionRouter.route("/").get(getAllSession).post(isLoggedIn, asyncValidatorController(checkSchema(sessionValidator)),postSession)
+SessionRouter.route("/sessionProfileId/:sessionProfileId").get(isLoggedIn, getSessionBySessionProfileId)
+SessionRouter.route("/sessionSocketId/:sessionSocketId").get(isLoggedIn, asyncValidatorController(checkSchema(sessionValidator)), getSessionBySessionSocketId)
+SessionRouter.route("/")
+    .get(getAllSession)
+    .post(isLoggedIn, asyncValidatorController(checkSchema(sessionValidator)),postSession)
+
 
 
