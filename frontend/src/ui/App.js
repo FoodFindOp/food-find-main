@@ -7,14 +7,16 @@ import { LandingPage } from './LandingPage'
 import { SwiperPage } from './SwiperPage'
 import { WinnerPage } from './WinnerPage'
 import { FourOhFour } from './FourOhFour'
-import { MainNav } from './shared/components/MainNav'
-
+import { MainNav } from './shared/components/mainnav/MainNav'
+import { Provider } from 'react-redux';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUtensils, faClipboardCheck, faHome } from '@fortawesome/free-solid-svg-icons'
 library.add(faUtensils, faClipboardCheck, faHome)
 
-export const App = () => (
+
+export const App = (store) => (
   <>
+    <Provider store={store} >
     <BrowserRouter>
       <MainNav/>
       <Switch>
@@ -26,5 +28,6 @@ export const App = () => (
         <Route component={FourOhFour}/>
       </Switch>
     </BrowserRouter>
+    </Provider>
   </>
 )
