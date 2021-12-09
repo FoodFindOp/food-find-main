@@ -3,7 +3,7 @@ import { Container, Nav, Navbar } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClipboardCheck, faHome } from '@fortawesome/free-solid-svg-icons'
-import navColor from './Nav.module.css'
+import navColor from '../Nav.module.css'
 
 export function MainNav () {
 
