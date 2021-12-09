@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Row, Col, Image, Card } from 'react-bootstrap'
-import pandaPic from './images/panda.png'
+import pandaPic from '../images/panda.png'
 
 export const WinnerPage = () => {
 

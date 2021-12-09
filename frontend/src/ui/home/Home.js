@@ -2,8 +2,8 @@ import React from 'react'
 import { useState } from 'react'
 import { Container, Row, Col, Button, Modal, Form, Nav } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import buttons from './shared/components/Buttons.module.css'
-import './shared/components/Bg.css'
+import buttons from '../shared/components/Buttons.module.css'
+import '../shared/components/Bg.css'
 
 export const Home = () => {
 
