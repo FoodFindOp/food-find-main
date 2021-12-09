@@ -1,6 +1,6 @@
 import React from 'react'
 import { Col, Container, Form, Row, Button } from 'react-bootstrap'
-import {fetchAllProfiles} from '../store/profile'
+import {fetchAllProfiles} from '../../store/profile'
 import { useSelector, useDispatch } from 'react-redux'
 
 export const ProfilePage = () => {

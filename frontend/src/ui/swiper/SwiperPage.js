@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Row, Col, Button, Image } from 'react-bootstrap'
-import pandaPic from './images/panda.png'
+import pandaPic from '../images/panda.png'
 
 export const SwiperPage = () => {
 

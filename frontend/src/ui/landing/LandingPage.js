@@ -2,7 +2,7 @@ import React from 'react'
 import { Col, Container, Row, Nav } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import logoStyles from './StyleLogo.module.css'
+import logoStyles from '../StyleLogo.module.css'
 
 export const LandingPage = () => {
 
