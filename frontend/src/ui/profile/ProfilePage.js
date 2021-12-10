@@ -1,12 +1,9 @@
 import React from 'react'
 import { Col, Container, Form, Row, Button } from 'react-bootstrap'
-<<<<<<< HEAD
 import {fetchAllProfiles} from '../../store/profile'
 import { useSelector, useDispatch } from 'react-redux'
 import {SignUpForm} from "./sign-up/SignUpForm";
-=======
-
->>>>>>> 2dceb626516eef7081188adf7f2ea354287b34cc
+import {SignInForm} from "./sign-in/SignInForm";
 
 export const ProfilePage = () => {
 
@@ -25,7 +22,16 @@ export const ProfilePage = () => {
       </Container>
 
       {/*Form*/}
-      <SignUpForm/>
+      <Container>
+        <Row>
+          <Col>
+            <SignUpForm/>
+          </Col>
+          <Col>
+            <SignInForm/>
+          </Col>
+        </Row>
+      </Container>
 
     </>
   )

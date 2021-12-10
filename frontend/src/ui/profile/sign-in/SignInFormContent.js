@@ -1,4 +1,4 @@
-import {FormDebugger} from "../../FormDebugger";
+import {FormDebugger} from "../../shared/components/FormDebugger";
 import React from "react";
 
 export const SignInFormContent = (props) => {
@@ -18,12 +18,11 @@ export const SignInFormContent = (props) => {
         <>
             <form onSubmit={handleSubmit}>
                 {/*controlId must match what is passed to the initialValues prop*/}
-                <div className="form-group">
+                <div className="col-sm-6 form-group">
                     <label htmlFor="profileEmail">Email Address</label>
                     <div className="input-group">
                         <div className="input-group-prepend">
                             <div className="input-group-text">
-                                <FontAwesomeIcon icon="envelope"/>
                             </div>
                         </div>
                         <input
@@ -47,7 +46,7 @@ export const SignInFormContent = (props) => {
                     }
                 </div>
                 {/*controlId must match what is defined by the initialValues object*/}
-                <div className="form-group">
+                <div className="col-sm-6 form-group">
                     <label htmlFor="profilePassword">Password</label>
                     <div className="input-group">
                         <div className="input-group-prepend">
@@ -69,7 +68,7 @@ export const SignInFormContent = (props) => {
                     )}
                 </div>
 
-                <div className="form-group">
+                <div className="col-sm-6 form-group">
                     <button className="btn btn-primary mb-2" type="submit">Submit</button>
                     <button
                         className="btn btn-danger mb-2"
