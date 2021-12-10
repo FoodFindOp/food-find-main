@@ -1,17 +1,16 @@
 import React from 'react'
 import { Col, Container, Form, Row, Button } from 'react-bootstrap'
+<<<<<<< HEAD
 import {fetchAllProfiles} from '../../store/profile'
 import { useSelector, useDispatch } from 'react-redux'
 import {SignUpForm} from "./sign-up/SignUpForm";
+=======
+
+>>>>>>> 2dceb626516eef7081188adf7f2ea354287b34cc
 
 export const ProfilePage = () => {
 
-  // const dispatch = useDispatch()
-  // const initialEffects = () => {
-  //   dispatch(fetchAllProfiles())
-  // }
-  // React.useEffect(initialEffects, [dispatch])
-  // const profile = useSelector((state) => state.profile ? state.profile : [])
+
   return (
     <>
 
