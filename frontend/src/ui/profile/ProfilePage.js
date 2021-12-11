@@ -4,6 +4,7 @@ import {fetchAllProfiles} from '../../store/profile'
 import { useSelector, useDispatch } from 'react-redux'
 import {SignUpForm} from "./sign-up/SignUpForm";
 import {SignInForm} from "./sign-in/SignInForm";
+import { SignOutComponent } from './sign-out/sign-out'
 
 export const ProfilePage = () => {
 
@@ -29,6 +30,11 @@ export const ProfilePage = () => {
           </Col>
           <Col>
             <SignInForm/>
+          </Col>
+        </Row>
+        <Row>
+          <Col className="d-flex justify-content-center">
+            <SignOutComponent/>
           </Col>
         </Row>
       </Container>

@@ -121,12 +121,6 @@ export const SignUpFormContent = (props) => {
                 </div>
                 <div className="col-sm-6 form-group px-3">
                     <button className="btn btn-primary mb-2" type="submit">Submit</button>
-                    <button
-                        className="btn btn-danger mb-2"
-                        onClick={handleReset}
-                        disabled={!dirty || isSubmitting}
-                    >Reset
-                    </button>
                 </div>
             </form>
             {
