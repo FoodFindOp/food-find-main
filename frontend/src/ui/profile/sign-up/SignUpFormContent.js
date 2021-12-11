@@ -16,6 +16,10 @@ export const SignUpFormContent = (props) => {
     } = props;
     return (
         <>
+<Container className="text-white">
+    <Row>
+        <Col>
+            <p className="fs-3">Sign Up</p>
 
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
@@ -100,6 +104,9 @@ export const SignUpFormContent = (props) => {
             {
                 status && (<div className={status.type}>{status.message}</div>)
             }
+        </Col>
+    </Row>
+</Container>
         </>
     )
 }

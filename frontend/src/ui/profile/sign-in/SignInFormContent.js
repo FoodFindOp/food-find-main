@@ -1,6 +1,6 @@
 import {FormDebugger} from "../../shared/components/FormDebugger";
 import React from "react";
-import { Form } from 'react-bootstrap'
+import { Form, Container, Row, Col } from 'react-bootstrap'
 
 export const SignInFormContent = (props) => {
     const {
@@ -17,8 +17,12 @@ export const SignInFormContent = (props) => {
     } = props;
     return (
         <>
+            <Container className="text-white">
+                <Row>
+                    <Col>
+                        <p className="fs-3">Sign In</p>
+
             <Form onSubmit={handleSubmit}>
-                {/*controlId must match what is passed to the initialValues prop*/}
                 <Form.Group>
                     <Form.Label htmlFor="profileEmail">Email Address</Form.Label>
                         <Form.Control
@@ -41,7 +45,6 @@ export const SignInFormContent = (props) => {
 
                     }
                 </Form.Group>
-                {/*controlId must match what is defined by the initialValues object*/}
                 <Form.Group>
                     <Form.Label htmlFor="profilePassword">Password</Form.Label>
                         <Form.Control
@@ -64,6 +67,9 @@ export const SignInFormContent = (props) => {
 
             </Form>
             {status && (<div className={status.type}>{status.message}</div>)}
+                    </Col>
+                </Row>
+            </Container>
         </>
     )
 };

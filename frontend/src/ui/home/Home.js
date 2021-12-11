@@ -23,7 +23,7 @@ export const Home = () => {
 
       {/*Title*/}
 
-      <Container className="text-light">
+      <Container className="col-3 text-light bg-dark bg-opacity-50 rounded-3">
         <Row>
           <Col className="py-5 d-flex justify-content-center">
             <h1>Fork It!</h1>
