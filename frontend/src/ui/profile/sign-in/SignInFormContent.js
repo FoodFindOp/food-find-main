@@ -1,5 +1,6 @@
 import {FormDebugger} from "../../shared/components/FormDebugger";
 import React from "react";
+import { Form } from 'react-bootstrap'
 
 export const SignInFormContent = (props) => {
     const {
@@ -16,16 +17,11 @@ export const SignInFormContent = (props) => {
     } = props;
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
                 {/*controlId must match what is passed to the initialValues prop*/}
-                <div className="col-sm-6 form-group">
-                    <label htmlFor="profileEmail">Email Address</label>
-                    <div className="input-group">
-                        <div className="input-group-prepend">
-                            <div className="input-group-text">
-                            </div>
-                        </div>
-                        <input
+                <Form.Group>
+                    <Form.Label htmlFor="profileEmail">Email Address</Form.Label>
+                        <Form.Control
                             className="form-control"
                             id="profileEmail"
                             type="email"
@@ -35,7 +31,7 @@ export const SignInFormContent = (props) => {
                             onBlur={handleBlur}
 
                         />
-                    </div>
+
                     {
                         errors.profileEmail && touched.profileEmail && (
                             <div className="alert alert-danger">
@@ -44,16 +40,11 @@ export const SignInFormContent = (props) => {
                         )
 
                     }
-                </div>
+                </Form.Group>
                 {/*controlId must match what is defined by the initialValues object*/}
-                <div className="col-sm-6 form-group">
-                    <label htmlFor="profilePassword">Password</label>
-                    <div className="input-group">
-                        <div className="input-group-prepend">
-                            <div className="input-group-text">
-                            </div>
-                        </div>
-                        <input
+                <Form.Group>
+                    <Form.Label htmlFor="profilePassword">Password</Form.Label>
+                        <Form.Control
                             id="profilePassword"
                             className="form-control"
                             type="password"
@@ -62,17 +53,16 @@ export const SignInFormContent = (props) => {
                             onChange={handleChange}
                             onBlur={handleBlur}
                         />
-                    </div>
                     {errors.profilePassword && touched.profilePassword && (
                         <div className="alert alert-danger">{errors.profilePassword}</div>
                     )}
-                </div>
+                </Form.Group>
 
                 <div className="col-sm-6 form-group">
-                    <button className="btn btn-primary mb-2" type="submit">Submit</button>
+                    <button className="btn btn-primary my-3" type="submit">Submit</button>
                 </div>
 
-            </form>
+            </Form>
             {status && (<div className={status.type}>{status.message}</div>)}
         </>
     )

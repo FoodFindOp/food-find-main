@@ -13,8 +13,8 @@ export const ProfilePage = () => {
     <>
 
       {/*Title*/}
-
-      <Container className="mt-5">
+<div className="bg-dark bg-opacity-50 mx-5 py-4">
+      <Container>
         <Row>
           <Col>
             <h1 className="d-flex justify-content-center text-white">Create Your Profile!</h1>
@@ -25,10 +25,10 @@ export const ProfilePage = () => {
       {/*Form*/}
       <Container>
         <Row>
-          <Col>
+          <Col className="d-flex justify-content-center">
             <SignUpForm/>
           </Col>
-          <Col>
+          <Col className="d-flex justify-content-center">
             <SignInForm/>
           </Col>
         </Row>
@@ -38,6 +38,7 @@ export const ProfilePage = () => {
           </Col>
         </Row>
       </Container>
+</div>
 
     </>
   )

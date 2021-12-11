@@ -59,16 +59,7 @@ export const Home = () => {
                 <Form>
                   <Form.Group className="mb-3" controlId="formGroupAddress">
                     <Form.Label>Location</Form.Label>
-                    <Form.Control type="address" placeholder="Enter address"/>
-                  </Form.Group>
-                  <Form.Group as={Col} controlId="formGridRadius">
-                    <Form.Label>Radius</Form.Label>
-                    <Form.Select defaultValue="Select radius">
-                      <option>5 miles</option>
-                      <option>10 miles</option>
-                      <option>15 miles</option>
-                      <option>20 miles</option>
-                    </Form.Select>
+                    <Form.Control type="address" placeholder="Enter Zip Code"/>
                   </Form.Group>
                 </Form>
 
@@ -103,16 +94,7 @@ export const Home = () => {
                 <Form>
                   <Form.Group className="mb-3" controlId="formGroupAddress">
                     <Form.Label>Location</Form.Label>
-                    <Form.Control type="address" placeholder="Enter address"/>
-                  </Form.Group>
-                  <Form.Group as={Col} controlId="formGridRadius">
-                    <Form.Label>Radius</Form.Label>
-                    <Form.Select defaultValue="Select radius">
-                      <option>5 miles</option>
-                      <option>10 miles</option>
-                      <option>15 miles</option>
-                      <option>20 miles</option>
-                    </Form.Select>
+                    <Form.Control type="address" placeholder="Enter Zip Code"/>
                   </Form.Group>
                 </Form>
 
