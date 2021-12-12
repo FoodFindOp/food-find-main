@@ -13,7 +13,7 @@ export const ProfilePage = () => {
     <>
 
       {/*Title*/}
-<div className="bg-dark bg-opacity-50 mx-5 py-4 rounded-3">
+<div className="bg-dark bg-opacity-75 mx-5 py-4 rounded-3">
       <Container>
         <Row>
           <Col>
