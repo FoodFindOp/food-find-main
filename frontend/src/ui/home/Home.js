@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { Container, Row, Col, Button, Modal, Form, Nav } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import buttons from '../shared/components/Buttons.module.css'
 import '../shared/components/Bg.css'
+import {v4 as uuidv4} from 'uuid'
+
+import { useDispatch } from 'react-redux'
+import { fetchRandomRestaurants } from '../../store/swipeRestaurants'
+import { fetchSessionBySessionId } from '../../store/session'
+import { httpConfig } from '../shared/utils/httpConfig'
+import { Route } from 'react-router'
 
 export const Home = () => {
 
@@ -17,13 +24,28 @@ export const Home = () => {
   const handleClose3 = () => setShow3(false)
   const handleShow3 = () => setShow3(true)
 
+
+
+  let history = useHistory()
+  const createSession = () => {
+const newSessionId = uuidv4()
+    httpConfig.post(`/apis/session`, {
+      sessionId: newSessionId
+    })
+      .then(reply => {
+
+        history.push(`/swiper-page/${newSessionId}`)
+        // dispatch(fetchSessionBySessionId)
+      })
+  }
+
   return (
 
-    <>
 
-      {/*Title*/}
 
-      <Container className="col-3 text-light bg-dark bg-opacity-50 rounded-3">
+  <>
+
+      <Container className="col-3 text-light">
         <Row>
           <Col className="py-5 d-flex justify-content-center">
             <h1>Fork It!</h1>
@@ -66,11 +88,11 @@ export const Home = () => {
               </Modal.Body>
               <Modal.Footer>
                 <Nav.Link>
-                  <Link to="/swiper-page">
-                    <Button variant="primary" onClick={handleClose}>
+                {/*  <Link>*/}
+                    <Button variant="primary" onClick={createSession}>
                       Start Game!
                     </Button>
-                  </Link>
+                  {/*</Link>*/}
                 </Nav.Link>
               </Modal.Footer>
             </Modal>
@@ -112,7 +134,7 @@ export const Home = () => {
           </Col>
         </Row>
       </Container>
-    </>
+  </>
   )
 }
 

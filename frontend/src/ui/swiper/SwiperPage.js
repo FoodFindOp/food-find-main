@@ -2,11 +2,14 @@ import React from 'react'
 import { Container, Row, Col, Button, Image } from 'react-bootstrap'
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
+import session, { fetchSessionBySocketId } from '../../store/session'
 import restaurant from '../../store/restaurant'
 import { fetchRandomRestaurants } from '../../store/swipeRestaurants'
 import { setRandomRestaurants } from '../../store/swipeRestaurants'
+import { httpConfig } from '../shared/utils/httpConfig'
+import { Link } from 'react-router-dom'
 
-export const SwiperPage = () => {
+export const SwiperPage = ({match}) => {
 
   const dispatch = useDispatch();
 
@@ -24,7 +27,26 @@ console.log(state)
       : null
   });
 
-  console.log(restaurant)
+
+  const submitVote = () => {
+    httpConfig.post(`/apis/vote`, {
+      voteRestaurantId: restaurant.restaurantId,
+      voteSessionId: match.params.sessionId,
+      voteLiked: 1
+    })
+      .then(reply => {
+        // let {message, type} = reply
+
+        // if(reply.status === 200) {
+          dispatch(fetchRandomRestaurants());
+        // }
+        // console.log(reply)
+      })
+  }
+const submitNo = () => {
+  dispatch(fetchRandomRestaurants());
+}
+
   return (
 
     <>
@@ -34,6 +56,7 @@ console.log(state)
       <Container>
         <Row>
           <Col>
+            <h2 className="text-white">Share This Link To Get Started! {window.location.href}</h2>
             {restaurant&& <h1 className="d-flex justify-content-center my-5 text-white">{restaurant.restaurantName}</h1>}
           </Col>
         </Row>
@@ -44,7 +67,7 @@ console.log(state)
       <Container>
         <Row>
           <Col className="col-2 d-flex flex-column justify-content-center">
-            <Button className="d-flex justify-content-center" variant="danger" size="lg">
+            <Button onClick={submitNo} className="d-flex justify-content-center" variant="danger" size="lg">
               NO!
             </Button>
           </Col>
@@ -52,7 +75,7 @@ console.log(state)
             {restaurant&& <Image fluid src={restaurant.restaurantImage} alt="food"/>}
           </Col>
           <Col className="col-2 d-flex flex-column justify-content-center">
-            <Button className="d-flex justify-content-center" variant="success" size="lg">
+            <Button onClick={submitVote} className="d-flex justify-content-center" variant="warning" size="lg">
               YES!
             </Button>
           </Col>

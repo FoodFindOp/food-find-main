@@ -62,7 +62,7 @@ export const SignInFormContent = (props) => {
                 </Form.Group>
 
                 <div className="col-sm-6 form-group">
-                    <button className="btn btn-primary my-3" type="submit">Submit</button>
+                    <button className="btn btn-warning my-3" type="submit">Submit</button>
                 </div>
 
             </Form>

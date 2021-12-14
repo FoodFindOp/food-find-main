@@ -21,6 +21,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.0",
     "standardx": "^5.0.0",
+    "uuid": "^8.3.2",
     "yup": "^0.32.9"
   },
   "scripts": {
@@ -54,4 +55,5 @@
       "last 1 safari version"
     ]
   }
+
 }

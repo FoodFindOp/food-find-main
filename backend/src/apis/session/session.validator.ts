@@ -1,9 +1,9 @@
 import {Schema} from "express-validator";
 
 export const sessionValidator:Schema = {
-    sessionSocketId: {
+    sessionId: {
         isString: {
-            errorMessage: "Please provide a valid session Socket Id"
+            errorMessage: "Please provide a valid sessionId"
         }
     },
 }

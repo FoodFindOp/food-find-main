@@ -43,8 +43,8 @@ export async function postSession(request: Request, response: Response) :
         try {
             const profile : Profile = request.session.profile as Profile
             const sessionProfileId : string = <string>profile.profileId
-            const {sessionSocketId} = request.body
-            const session = {sessionId: null, sessionProfileId, sessionSocketId}
+            const sessionSocketId = request.body.sessionId
+            const session = {sessionId: request.body.sessionId, sessionProfileId, sessionSocketId}
             const mySqlResult = await insertSession(session);
             const data = mySqlResult ?? null
             const status: Status = {status: 200, data, message:null}

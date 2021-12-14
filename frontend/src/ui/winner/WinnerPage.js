@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { Container, Row, Col, Image, Card, Stack } from 'react-bootstrap'
-import pandaPic from '../images/panda.png'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchReviewByReviewRestaurantId } from '../../store/review'
 import { fetchRestaurantByRestaurantId } from '../../store/restaurant'
