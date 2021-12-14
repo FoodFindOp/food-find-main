@@ -1,5 +1,7 @@
 import { App } from './App'
 import {Profile} from "./utils/interfaces/Profile";
+import {Request} from "express";
+import {Server} from 'socket.io';
 
 
 
@@ -10,6 +12,13 @@ declare module 'express-session' {
         jwt: string|undefined
     }
 }
+
+declare module "express-serve-static-core" {
+    export interface Request{
+        io: Server
+    }
+}
+
 // instantiate new app and pass it a port as an argument to start with (4200)
 async function main () {
     try {

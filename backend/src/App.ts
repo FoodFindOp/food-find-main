@@ -1,8 +1,8 @@
 import express, { Application, Errback, ErrorRequestHandler, NextFunction, Request, Response } from 'express'
 import morgan from 'morgan'
 // Routes
-const session = require('express-session')
-const MemoryStore = require('memorystore')(session);
+import server, {Server as Http} from 'http';
+import {Server} from 'socket.io'
 import { indexRoute } from './apis/index.route'
 import {SignInRouter} from "./apis/sign-in/sign-in.route";
 import SignupRoute from './apis/sign-up/sign-up.route';
@@ -12,11 +12,15 @@ import {ProfileRoute} from "./apis/profile/profile.route";
 import RestaurantRouter from "./apis/restaurant/restaurant.route";
 import ReviewRouter from "./apis/review/review.route";
 import {VoteRoute} from "./apis/vote/vote.route";
+const session = require('express-session')
+const MemoryStore = require('memorystore')(session);
 
 
 // The following class creates the app and instantiates the server
 export class App {
     app: Application;
+    io: Server
+    http: Http
 
     constructor (
         private port?: number | string
@@ -25,6 +29,10 @@ export class App {
         this.settings()
         this.middlewares()
         this.routes()
+        this.http = server.createServer(this.app)
+
+        this.io = new Server(this.http, { path: "/socket", cors: { origin: "*" }, 'transports': ['websocket', 'polling'] })
+
     }
 
     // private method that sets the port for the sever, to one from index.route.ts, and external .env file or defaults to 3000
@@ -46,6 +54,10 @@ export class App {
         this.app.use(morgan('dev'))
         this.app.use(express.json())
         this.app.use(session(sessionConfig));
+        this.app.use("*", (request, response, next) => {
+            request.io = this.io as Server;
+            return next();
+        })
     }
 
     // private method for setting up routes in their basic sense (ie. any route that performs an action on profiles starts with /profiles)
@@ -68,5 +80,16 @@ export class App {
     public async listen (): Promise<void> {
         await this.app.listen(this.app.get('port'))
         console.log('Express application built successfully')
+
+        this.io.on('connection', () => {
+            setInterval(() => {
+                console.log('emit event');
+                this.io.emit('event', { data: 'worked successfully!' });
+            }, 1000000000)
+        })
+        this.http.listen(8080, () => {console.log("Express application successfully built")})
     }
 }
+
+
+

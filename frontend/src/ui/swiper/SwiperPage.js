@@ -2,12 +2,9 @@ import React from 'react'
 import { Container, Row, Col, Button, Image } from 'react-bootstrap'
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
-import session, { fetchSessionBySocketId } from '../../store/session'
-import restaurant from '../../store/restaurant'
 import { fetchRandomRestaurants } from '../../store/swipeRestaurants'
-import { setRandomRestaurants } from '../../store/swipeRestaurants'
 import { httpConfig } from '../shared/utils/httpConfig'
-import { Link } from 'react-router-dom'
+
 
 export const SwiperPage = ({match}) => {
 
