@@ -2,7 +2,6 @@ import React from 'react'
 import {useDispatch} from 'react-redux'
 import { httpConfig } from '../../shared/utils/httpConfig'
 import {getAuth} from '../../../store/auth'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export const SignOutComponent = () => {
   const dispatch = useDispatch()

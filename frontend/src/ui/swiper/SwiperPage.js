@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container, Row, Col, Button, Image } from 'react-bootstrap'
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
@@ -8,12 +8,17 @@ import { setVote } from '../../store/vote'
 import { useHistory } from 'react-router-dom'
 
 
-export const SwiperPage = ({match}) => {
+
+export const SwiperPage = (props) => {
+  const [reFetch, handleReFetch] = useState(true)
 
   const dispatch = useDispatch();
 
   const sideEffects = () => {
+  if (reFetch === true) {
     dispatch(fetchRandomRestaurants());
+    handleReFetch(false)
+  }
 
   };
 
@@ -21,23 +26,41 @@ export const SwiperPage = ({match}) => {
 
   const restaurant = useSelector(state => {
 
-   return state.swipeRestaurants
+   return state.swipeRestaurants.length > 0
       ? state.swipeRestaurants[0]
-      : null
+      : []
   });
 
   const votes = useSelector(state => state.votes)
   const history = useHistory()
-  console.log(votes.length)
-  console.log(restaurant)
-if (votes.length === 15 && restaurant === undefined) {
-  history.push("/winner-page")
+  // console.log(votes.length)
+  // console.log(restaurant)
+  // console.log(props)
+if (votes.length === 15 && restaurant.length === 0) {
+  const chosenRestaurants = votes.filter(vote => {
+
+
+    console.log(vote.voteLiked === 1)
+    return vote.voteLiked === 1
+  })
+  console.log(chosenRestaurants)
+  if (chosenRestaurants.length > 0) {
+    let randomRestaurant = chosenRestaurants[Math.floor(Math.random()*chosenRestaurants.length)];
+  console.log(randomRestaurant)
+    history.push(`/winner-page/${randomRestaurant.voteRestaurantId}`)
+  //filter votes for yes votes
+  //if yes votes randomly select a vote if not grab more restaurants
+  } else {
+    console.log("is this thing on?")
+   dispatch(fetchRandomRestaurants())
+  }
 }
+
 
   const submitVote = (voteLiked) => {
     const vote = {
       voteRestaurantId: restaurant.restaurantId,
-      voteSessionId: match.params.sessionId,
+      // voteSessionId: match.params.sessionId,
       voteLiked
     }
     httpConfig.post(`/apis/vote`, vote)

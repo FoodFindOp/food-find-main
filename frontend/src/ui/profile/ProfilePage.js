@@ -1,7 +1,7 @@
 import React from 'react'
-import { Col, Container, Form, Row, Button } from 'react-bootstrap'
-import {fetchAllProfiles} from '../../store/profile'
-import { useSelector, useDispatch } from 'react-redux'
+import { Col, Container, Row } from 'react-bootstrap'
+
+
 import {SignUpForm} from "./sign-up/SignUpForm";
 import {SignInForm} from "./sign-in/SignInForm";
 import { SignOutComponent } from './sign-out/sign-out'

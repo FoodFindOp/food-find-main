@@ -12,7 +12,6 @@ export const SignUpFormContent = (props) => {
         handleChange,
         handleBlur,
         handleSubmit,
-        handleReset
     } = props;
     return (
         <>

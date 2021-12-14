@@ -1,4 +1,3 @@
-import {FormDebugger} from "../../shared/components/FormDebugger";
 import React from "react";
 import { Form, Container, Row, Col } from 'react-bootstrap'
 
@@ -8,12 +7,9 @@ export const SignInFormContent = (props) => {
         values,
         errors,
         touched,
-        dirty,
-        isSubmitting,
         handleChange,
         handleBlur,
         handleSubmit,
-        handleReset
     } = props;
     return (
         <>
