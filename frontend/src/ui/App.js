@@ -9,13 +9,10 @@ import { WinnerPage } from './winner/WinnerPage'
 import { FourOhFour } from './404/FourOhFour'
 import { MainNav } from './shared/components/mainnav/MainNav'
 import socketIOClient from 'socket.io-client'
-import { RestaurantReviews } from './winner/restaurantReviews'
 import { Provider } from 'react-redux';
 import { createBrowserHistory } from 'history'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUtensils, faClipboardCheck, faHome } from '@fortawesome/free-solid-svg-icons'
-import { WinnerCard } from './shared/WinnerCard'
-import { createAsyncThunk } from '@reduxjs/toolkit'
 library.add(faUtensils, faClipboardCheck, faHome)
 
 const history = createBrowserHistory()

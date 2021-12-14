@@ -78,15 +78,9 @@ export class App {
     }
     // starts the server and tells the terminal to post a message that the server is running and on what port
     public async listen (): Promise<void> {
-        await this.app.listen(this.app.get('port'))
-        console.log('Express application built successfully')
 
-        this.io.on('connection', () => {
-            setInterval(() => {
-                console.log('emit event');
-                this.io.emit('event', { data: 'worked successfully!' });
-            }, 1000000000)
-        })
+
+
         this.http.listen(8080, () => {console.log("Express application successfully built")})
     }
 }

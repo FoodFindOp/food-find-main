@@ -5,12 +5,8 @@ import { Link, useHistory } from 'react-router-dom'
 import buttons from '../shared/components/Buttons.module.css'
 import '../shared/components/Bg.css'
 import {v4 as uuidv4} from 'uuid'
-
-import { useDispatch } from 'react-redux'
-import { fetchRandomRestaurants } from '../../store/swipeRestaurants'
-import { fetchSessionBySessionId } from '../../store/session'
 import { httpConfig } from '../shared/utils/httpConfig'
-import { Route } from 'react-router'
+
 
 export const Home = () => {
 
@@ -123,11 +119,11 @@ const newSessionId = uuidv4()
               </Modal.Body>
               <Modal.Footer>
                 <Nav.Link>
-                  <Link to="/swiper-page">
-                    <Button variant="primary" onClick={handleClose}>
+                  {/*<Link to="/swiper-page">*/}
+                    <Button variant="primary" onClick={createSession}>
                       Start Game!
                     </Button>
-                  </Link>
+                  {/*</Link>*/}
                 </Nav.Link>
               </Modal.Footer>
             </Modal>

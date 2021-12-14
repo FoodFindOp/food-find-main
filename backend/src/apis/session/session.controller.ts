@@ -41,6 +41,7 @@ export async function getAllSession(request: Request, response: Response) : Prom
 export async function postSession(request: Request, response: Response) :
     Promise<Response> {
         try {
+
             const profile : Profile = request.session.profile as Profile
             const sessionProfileId : string = <string>profile.profileId
             const sessionSocketId = request.body.sessionId

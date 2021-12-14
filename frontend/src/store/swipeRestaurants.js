@@ -11,11 +11,14 @@ const slice = createSlice({
     },
     getRestaurantByRestaurantId: (restaurants, action) => {
       restaurants.push(action.payload)
+    },
+    moveToNextRestaurant: (restaurants, action) => {
+      restaurants.shift()
     }
   }
 })
 
-export const {setRandomRestaurants} = slice.actions
+export const {setRandomRestaurants, moveToNextRestaurant} = slice.actions
 
 
 export const fetchRandomRestaurants = () => async dispatch => {
