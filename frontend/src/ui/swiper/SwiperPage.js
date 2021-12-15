@@ -36,7 +36,7 @@ export const SwiperPage = (props) => {
   // console.log(votes.length)
   // console.log(restaurant)
   // console.log(props)
-if (votes.length === 15 && restaurant.length === 0) {
+if (votes.length > 15 && restaurant.length === 0) {
   const chosenRestaurants = votes.filter(vote => {
 
 
@@ -98,7 +98,7 @@ if (votes.length === 15 && restaurant.length === 0) {
             </Button>
           </Col>
           <Col className="col-8 d-flex justify-content-center">
-            {restaurant&& <Image fluid src={restaurant.restaurantImage} alt="food"/>}
+            {restaurant&& <Image src={restaurant.restaurantImage} alt="food" width="300px" height="300px"/>}
           </Col>
           <Col className="col-2 d-flex flex-column justify-content-center">
             <Button onClick={() => {submitVote(1)}} className="d-flex justify-content-center" variant="warning" size="lg">
